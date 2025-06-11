@@ -19,12 +19,12 @@ const EventPage = () => {
   const [filteredParticipants, setFilteredParticipants] = useState<
     EventParticipant[]
   >([]);
-  const [showRegister, setShowRegister] = useState<boolean>(false);
+  const [registered, setRegistered] = useState<boolean>(false);
 
   const onRegister = async (eventId: number) => {
     if (user?.participant) {
       await EventsService.registerParticipant(eventId);
-      setShowRegister(false);
+      setRegistered(true);
     }
   };
 
@@ -46,22 +46,22 @@ const EventPage = () => {
   }, [id, user]);
 
   useEffect(() => {
+    if (
+      registered ||
+      eventParticipants.find(
+        (participant) => participant.participant.userId === user?.id
+      )
+    ) {
+      setRegistered(true);
+    } else {
+      setRegistered(false);
+    }
     setFilteredParticipants(
       eventParticipants.filter(
         (participant) => participant.participant.userId !== user?.id
       )
     );
-    if (
-      user?.organizer ||
-      eventParticipants.find(
-        (participant) => participant.participant.userId === user?.id
-      )
-    ) {
-      setShowRegister(false);
-    } else {
-      setShowRegister(true);
-    }
-  }, [eventParticipants, user]);
+  }, [eventParticipants, registered, user]);
 
   return (
     <div>
@@ -69,7 +69,8 @@ const EventPage = () => {
         <EventCard
           event={event}
           single={true}
-          showRegister={showRegister}
+          showRegister={!!user?.participant}
+          registred={registered}
           onRegister={onRegister}
         />
       )}

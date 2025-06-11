@@ -9,6 +9,7 @@ interface Props {
   event: Event;
   single?: boolean;
   showRegister?: boolean;
+  registred?: boolean;
   onRegister?: (eventId: number) => void;
 }
 
@@ -16,6 +17,7 @@ const EventCard = ({
   event,
   single = false,
   showRegister = false,
+  registred = false,
   onRegister,
 }: Props) => {
   return (
@@ -40,8 +42,9 @@ const EventCard = ({
                 onRegister(event.id);
               }
             }}
+            disabled={registred}
           >
-            <Typography>Register</Typography>
+            <Typography>{registred ? "Registered" : "Register"}</Typography>
           </Button>
         )}
         {!single && (
