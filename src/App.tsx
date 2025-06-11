@@ -7,16 +7,20 @@ import "@fontsource/roboto/700.css";
 import { MaterialThemeProvider } from "./config/MaterialConfig";
 import AppRoutes from "./AppRoutes";
 import { UserContextOutlet } from "./states/UserContext";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 function App() {
   return (
-    <MaterialThemeProvider>
-      <BrowserRouter>
-        <UserContextOutlet>
-          <AppRoutes />
-        </UserContextOutlet>
-      </BrowserRouter>
-    </MaterialThemeProvider>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <MaterialThemeProvider>
+        <BrowserRouter>
+          <UserContextOutlet>
+            <AppRoutes />
+          </UserContextOutlet>
+        </BrowserRouter>
+      </MaterialThemeProvider>
+    </LocalizationProvider>
   );
 }
 

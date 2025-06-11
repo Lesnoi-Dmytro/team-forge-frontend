@@ -39,4 +39,7 @@ export const AuthService = {
     );
     return response.data;
   },
+  signOut() {
+    localStorage.removeItem(AUTH_TOKEN_KEY);
+  },
 };

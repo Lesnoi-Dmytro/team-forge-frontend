@@ -12,7 +12,7 @@ export interface Participant {
   githubUrl?: string | null;
   linkedInUrl?: string | null;
   user?: User;
-  userDomains: Domain[];
-  userSkills: Skill[];
-  userFields: Field[];
+  userDomains: { domain: Domain }[];
+  userSkills: { skill: Skill }[];
+  userFields: { field: Field }[];
 }

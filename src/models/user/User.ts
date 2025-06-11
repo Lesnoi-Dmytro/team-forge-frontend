@@ -14,6 +14,6 @@ export interface User {
   password: string;
   image: string | null;
   userType: UserType;
-  participant?: Participant;
-  organizer: EventOrganizer;
+  participant?: Participant | null;
+  organizer?: EventOrganizer | null;
 }

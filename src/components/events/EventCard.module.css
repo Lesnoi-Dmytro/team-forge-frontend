@@ -1,0 +1,29 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 30px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.rowBetween {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.card .goButton {
+  text-decoration: none;
+}
+
+.goButton svg {
+  transition: transform 0.5s;
+}
+
+.goButton:hover svg {
+  transform: translateX(4px);
+}
